@@ -1,0 +1,3 @@
+==Blog Engine
+
+This is a simple blog engine. A web application which is supposed to be written in pure Ruby from scratch and doesn't use any kind of gem or external library! It is only allowed to use core libraries of Ruby!
