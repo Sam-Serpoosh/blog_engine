@@ -1,6 +1,6 @@
 require_relative "./unit_test"
 
-class WasCalled < UnitTest
+class TestClass < UnitTest
   attr_reader :test_methods_count
  
   def initialize
@@ -18,9 +18,9 @@ class WasCalled < UnitTest
 end
 
 def run_tests
-  was_called = WasCalled.new
-  was_called.run
-  raise Exception if was_called.test_methods_count != 2
+  test_class = TestClass.new
+  test_class.run
+  raise Exception if test_class.test_methods_count != 2
 end
 
 run_tests
