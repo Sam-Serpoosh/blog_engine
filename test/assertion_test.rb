@@ -33,6 +33,14 @@ class AssertionTest < UnitTest
     inequality = Assertion.are_not_equal(1, 2)
     raise Exception if inequality != true
   end
+
+  def test_expectation_message
+    expected, actual = "expected", "actual"
+    expectation_message = Assertion.expectation_message(expected, actual)
+
+    Assertion.are_equal("expected was: \"expected\" actual was: \"actual\"", 
+                        expectation_message)
+  end
 end
 
 def run_test
