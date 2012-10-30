@@ -1,14 +1,13 @@
 class Post
-  attr_reader :title, :content, :published_at
+  attr_reader :title, :body, :published_at
 
-  def initialize(attr)
-    attr.each do |key, value|
-      send("#{key.to_s}=", value)
-    end
+  def initialize(title, body)
+    @title = title
+    @body = body
   end
 
-  def publish(time=Time)
-    @published_at = time.now
+  def publish(at=Time.now)
+    @published_at = at
   end
 
   private
@@ -16,7 +15,7 @@ class Post
       @title = title
     end
 
-    def content=(content)
-      @content = content
+    def body=(body)
+      @body = body
     end
 end
