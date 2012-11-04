@@ -10,6 +10,10 @@ class Post
     @published_at = at
   end
 
+  def published?
+    !@published_at.nil?
+  end
+
   private
     def title=(title)
       @title = title
