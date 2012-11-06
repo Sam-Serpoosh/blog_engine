@@ -1,7 +1,6 @@
 require_relative "./unit_test"
 require_relative "./assertion"
 require_relative "../blog/post"
-require "time"
 
 class PostTest < UnitTest
   def initialize
@@ -21,22 +20,9 @@ class PostTest < UnitTest
     Assertion.are_equal(@body, post.body)
   end
 
-  def test_publish_set_the_datetime_of_post_to_current
-    time = Time.parse("2012-10-28 21:00")
+  def test_publishes_post_when_its_get_created
     post = Post.new(@title, @body)
-    post.publish(time)
-    Assertion.are_equal(time, post.published_at)
-  end
-
-  def test_post_knows_when_published
-    post = Post.new(@title, @body)
-    post.publish
-    Assertion.are_equal(true, post.published?)
-  end
-
-  def test_post_knows_when_not_published
-    post = Post.new(@title, @body)
-    Assertion.are_equal(false, post.published?)
+    Assertion.are_not_equal(nil, post.published_at)
   end
 end
 

@@ -34,6 +34,24 @@ class AssertionTest < UnitTest
     raise Exception if inequality != true
   end
 
+  def test_array_equal_returns_true_when_all_items_are_equal
+    arr1 = [1, 2]
+    arr2 = [1, 2]
+    equality = Assertion.array_equal(arr1, arr2)
+    raise Exception if equality != true
+  end
+
+  def test_array_equal_raise_exception_in_not_equal_items_case
+    arr1 = [1, 2]
+    arr2 = [1, 3]
+    begin
+      Assertion.array_equal(arr1, arr2)
+    rescue AssertionError
+      return
+    end
+    raise Exception
+  end
+
   def test_expectation_message
     expected, actual = "expected", "actual"
     expectation_message = Assertion.expectation_message(expected, actual)

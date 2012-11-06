@@ -10,15 +10,7 @@ class Blog
     @posts << new_post
   end
 
-  def publish
-    @posts.each do |post|
-      post.publish if !post.published?
-    end
-  end
-
   def published_posts
-    @posts.select do |post|
-      post.published?
-    end.sort_by(&:published_at).reverse
+    @posts.reverse
   end
 end

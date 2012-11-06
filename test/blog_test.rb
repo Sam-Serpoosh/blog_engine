@@ -9,44 +9,19 @@ class BlogTest < UnitTest
   end
 
   def test_adding_new_post_to_blog
+    post = Post.new("test title", "sample body")
     blog = Blog.new
-    blog.add_post("test title", "sample body")
-    Assertion.are_equal(true, blog.posts[0].is_a?(Post))
-    Assertion.are_equal(1, blog.posts.count)
-  end
-
-  def test_post_being_published_through_blog
-    blog = Blog.new
-    blog.add_post("test title", "sample body")
-    blog.publish
-    Assertion.are_equal(true, blog.posts[0].published?)
-  end
-
-  def test_blog_does_not_publish_post_that_is_already_published
-    #TODO: find a way for testing this!
-  end
-
-  def test_get_only_published_posts
-    blog = Blog.new
-    title = "title1"
-    blog.add_post(title, "body1")
-    blog.publish
-    blog.add_post("title2", "body2")
-    published_posts = blog.published_posts
-    Assertion.are_equal(1, published_posts.count)
-    Assertion.are_equal(title, published_posts[0].title)
+    blog.add_post(post.title, post.body)
+    Assertion.are_equal([post], blog.posts)
   end
 
   def test_get_published_posts_in_most_recent_first_order
+    post1 = Post.new("title1", "body1")
+    post2 = Post.new("title2", "body2")
     blog = Blog.new
-    title1 = "title1"
-    title2 = "title2"
-    blog.add_post(title1, "body1")
-    blog.add_post(title2, "body2")
-    blog.publish
-    published_posts = blog.published_posts
-    Assertion.are_equal(title2, published_posts[0].title)
-    Assertion.are_equal(title1, published_posts[1].title)
+    blog.add_post(post1.title, post1.body)
+    blog.add_post(post2.title, post2.body)
+    Assertion.array_equal([post2, post1], blog.published_posts)
   end
 end
 
