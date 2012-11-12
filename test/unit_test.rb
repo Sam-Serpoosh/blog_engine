@@ -2,12 +2,19 @@ class UnitTest
   def initialize(test_object)
     @test_object = test_object
   end
+  
+  def setup; end
 
   def run
     test_methods = fetch_test_methods
     test_methods.each do |test_method_name|
-      send(test_method_name.to_sym)
+      run_test_method(test_method_name)
     end
+  end
+
+  def run_test_method(test_method_name)
+    setup
+    send(test_method_name.to_sym)
   end
 
   def fetch_test_methods
