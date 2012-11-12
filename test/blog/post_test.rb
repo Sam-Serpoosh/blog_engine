@@ -1,6 +1,6 @@
-require_relative "./unit_test"
-require_relative "./assertion"
-require_relative "../blog/post"
+require_relative "../unit_test"
+require_relative "../assertion"
+require_relative "../../blog/post"
 
 class PostTest < UnitTest
   def initialize

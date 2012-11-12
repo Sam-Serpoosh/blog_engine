@@ -1,7 +1,8 @@
 class Blog
-  attr_reader :posts
+  attr_reader :title, :posts
 
-  def initialize
+  def initialize(title)
+    @title = title
     @posts = []
   end
 
